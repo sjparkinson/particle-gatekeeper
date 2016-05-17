@@ -1,0 +1,20 @@
+#!/usr/bin/expect -f
+
+# Copyright (C) 2016 Samuel Parkinson <sam.james.parkinson@gmail.com>
+#
+# @license MIT
+# @author Samuel Parkinson <sam.james.parkinson@gmail.com>
+
+set timeout 10
+set user [lindex $argv 0]
+set password [lindex $argv 1]
+
+spawn particle cloud login
+
+expect "? Please enter your email address: "
+send "$user\r"
+
+expect "? Please enter your password: "
+send "$password\r"
+
+interact

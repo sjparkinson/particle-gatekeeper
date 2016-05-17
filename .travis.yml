@@ -1,0 +1,22 @@
+---
+language: node_js
+
+before_install:
+  - npm install -g particle-cli
+  - expect .travis/particle-login.exp "$PARTICLE_USERNAME" "$PARTICLE_PASSWORD"
+
+script:
+  - make
+
+deploy:
+  - provider: script
+    script: make flash
+    on:
+      branch: master
+
+env:
+  global:
+    # PARTICLE_USERNAME
+    - secure:
+    # PARTICLE_PASSWORD
+    - secure:
